@@ -193,25 +193,17 @@ public:
     }
     // Adding functions for easy access of elements
     string firstNode() {
-        if (!head) { // empty list
-            return "";
-        }
+        // Can't figure out bounds checking, going to skip that for now
         return head->name;
     }
 
     string lastNode() {
-        if (!tail) { // empty list
-            return;
-        }
         return tail->name;
     }
 
     string selectNode(int pos) {
         // Traverse node to position, return that name
         Node* current = head;
-        if (!current) {
-            return;
-        }
         for (int i = 0; i > pos; i++)
             current = current->next;
         return current->name;
@@ -310,16 +302,8 @@ void personJoinsLine(DoublyLinkedList list) {
 }
 // 2 Customer is served
 void personIsServed(DoublyLinkedList list) {
-    // Algorithm:
-    // check if list is empty
-    if (list.firstNode() == "") {
-        cout << "Everyone has been served!" << endl;
-        return;
-    }
-    // access first node to find name of 1st person
+    // Can't figure out bounds checking, going to skip implementing that
     string name = list.firstNode();
-    // pop first name from list
-    // output
     list.pop_front();
     cout << name << " was served." << endl;
 }
