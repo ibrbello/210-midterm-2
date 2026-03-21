@@ -328,27 +328,28 @@ void vipSkipsLine(DoublyLinkedList& list);
 
 int main() {
     srand(time(0));
-    // Algorithm:
     // Create empty DLL to represent the queue
     DoublyLinkedList theLine;
-    // test
-    personJoinsLine(theLine);
-    personJoinsLine(theLine);
-    personJoinsLine(theLine);
-    theLine.print();
-    anyoneLeaves(theLine);
-    lastPersonLeaves(theLine);
+    // // test
+    // personJoinsLine(theLine);
+    // personJoinsLine(theLine);
+    // personJoinsLine(theLine);
+    // theLine.print();
+    // anyoneLeaves(theLine);
+    // lastPersonLeaves(theLine);
 
 
     // For loop (runs 20 times, one for each minute)
-    for (int i = 1; i >= MINS; i++) {
+    for (int i = 1; i <= MINS; i++) {
         // Print out "Store opens"
         cout << "Store opens:" << endl;
         // If i = 0 (first minute): for loop to add 5 random names (use function)
         if (i == 1) {
-            for (int j = 0; i > 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 personJoinsLine(theLine);
             }
+            cout << "Current line: " << endl;
+            theLine.print();
         }
         // Else: (every other iteration)
         else {
@@ -362,10 +363,7 @@ int main() {
             cout << "Current line: " << endl;
             theLine.print();
         }
- 
     }
-
-    
     return 0;
 }
 
@@ -396,10 +394,8 @@ void anyoneLeaves(DoublyLinkedList& list) {
         cout << "Everyone is served!" << endl;
         return;
     }
-    cout << "Length of list is " << length << endl;
     // choose random position in the current list
     int pos = rand() % length + 1;
-    cout << "Position to be removed is" << pos << endl;
     // print out that person
     list.print_node(pos);
     cout << " left the line." << endl;
