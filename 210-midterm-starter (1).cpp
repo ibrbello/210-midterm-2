@@ -1,7 +1,32 @@
+// COMSC-210 | Midterm 2 | Ibrahim Bello
+// This program creates a driver for a DLL
+// to simulate a line at a coffee shop.
+
+
 #include <iostream>
+#include <string>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int MINS = 20;
+const string names[] = {
+    "Adam", "Alex", "Andy", "Anne", "Aria", "Beau", "Beth",
+    "Bill", "Brad", "Cara", "Chad", "Cole", "Dana", "Dave",
+    "Dean", "Drew", "Elle", "Emma", "Eric", "Erik", "Evan",
+    "Faye", "Finn", "Gabe", "Gary", "Gina", "Greg", "Gwen",
+    "Hank", "Hope", "Iris", "Ivan", "Jack", "Jade", "Jake",
+    "Jane", "Jean", "Jett", "Jill", "Joan", "Joel", "John",
+    "Judy", "June", "Kate", "Katy", "Kirk", "Kyle", "Lana",
+    "Lane", "Leah", "Lena", "Liam", "Lily", "Lisa", "Lucy",
+    "Luna", "Lyle", "Lynn", "Mark", "Mary", "Matt", "Maya",
+    "Mike", "Milo", "Mina", "Neal", "Neil", "Nell", "Nina",
+    "Noah", "Noel", "Nora", "Omar", "Otis", "Owen", "Paul",
+    "Pete", "Reed", "Rene", "Rita", "Ross", "Ruby", "Ryan",
+    "Sage", "Sara", "Seth", "Tara", "Tess", "Tina", "Toby",
+    "Tony", "Troy", "Vera", "Wade", "Will", "Yara", "Zane",
+    "Zara"
+};
+
 
 class DoublyLinkedList {
 private:
@@ -203,19 +228,28 @@ public:
     }
 };
 
+// Functions for each coffee line operation:
+
+// 1. Adding a person
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
     // Algorithm:
     // Create empty DLL to represent the queue
+    DoublyLinkedList theLine;
     // For loop (runs 20 times, one for each minute)
+    for (int i = 1; i >= 20; i++) {
+        // Print out "Store opens"
+        
         // If i = 0 (first minute): for loop to add 5 random names (use function)
         // Else:
+            // print out "Time step #i"
+            cout << "Time step #" << i << ": " << endl;
             // Run 5 functions, one for each possible outcome
             // Each function recieves the DLL as its argument?
             // Each function runs the probability,  does the action if needed,
             // and puts out the necessary output
-            // Once all 5 functions run, print out the line
-
+            // Once all 5 functions run, output out the line
+    }
 
     
     return 0;
