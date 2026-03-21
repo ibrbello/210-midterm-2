@@ -9,7 +9,7 @@ using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 const int MINS = 20;
-const string names[] = {
+const string names[99] = {
     "Adam", "Alex", "Andy", "Anne", "Aria", "Beau", "Beth",
     "Bill", "Brad", "Cara", "Chad", "Cole", "Dana", "Dave",
     "Dean", "Drew", "Elle", "Emma", "Eric", "Erik", "Evan",
@@ -228,10 +228,20 @@ public:
     }
 };
 
-// Functions for each coffee line operation:
-
+// Function Prototypes for each coffee line operation:
 // 1. Adding a person
+void personJoinsLine(DoublyLinkedList list);
+// 2 Customer is served
+void personIsServed(DoublyLinkedList list);
+// 3. Any customer leaves
+void anyoneLeaves(DoublyLinkedList list);
+// 4. Last customer leaves
+void lastPersonLeaves(DoublyLinkedList list);
+// 5. VIP skips line
+void vipSkipsLine(DoublyLinkedList list);
+
 int main() {
+    srand(time(0));
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
     // Algorithm:
     // Create empty DLL to represent the queue
@@ -239,7 +249,7 @@ int main() {
     // For loop (runs 20 times, one for each minute)
     for (int i = 1; i >= 20; i++) {
         // Print out "Store opens"
-        
+        cout << "Store opens: " << endl;
         // If i = 0 (first minute): for loop to add 5 random names (use function)
         // Else:
             // print out "Time step #i"
@@ -253,4 +263,31 @@ int main() {
 
     
     return 0;
+}
+
+// Functions for each coffee line operation:
+// 1. Adding a person
+void personJoinsLine(DoublyLinkedList list) {
+    // Algorithm:
+    // Get random name from list
+    string name = names[rand() % ];
+    // create new node with that name
+    // use list.push_back to add that name
+    // output "name" joined the line
+}
+// 2 Customer is served
+void personIsServed(DoublyLinkedList list) {
+
+}
+// 3. Any customer leaves
+void anyoneLeaves(DoublyLinkedList list) {
+
+}
+// 4. Last customer leaves
+void lastPersonLeaves(DoublyLinkedList list) { 
+
+}
+// 5. VIP skips line
+void vipSkipsLine(DoublyLinkedList list) { 
+
 }
