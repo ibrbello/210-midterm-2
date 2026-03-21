@@ -337,23 +337,32 @@ int main() {
     personJoinsLine(theLine);
     theLine.print();
     anyoneLeaves(theLine);
+    lastPersonLeaves(theLine);
 
 
     // For loop (runs 20 times, one for each minute)
-    for (int i = 1; i >= 20; i++) {
+    for (int i = 1; i >= MINS; i++) {
         // Print out "Store opens"
-        //cout << "Store opens: " << endl;
+        cout << "Store opens:" << endl;
         // If i = 0 (first minute): for loop to add 5 random names (use function)
-        // Else:
-            // print out "Time step #i"
-            //cout << "Time step #" << i << ": " << endl;
-            // Run 5 functions, one for each possible outcome
-            // compute probability
-            // Set of if-elifs based on probability
-            // Each function recieves the DLL as its argument?
-            // Each function does the action
-            // and puts out the necessary output
-            // Once all 5 functions run, output out the line
+        if (i == 1) {
+            for (int j = 0; i > 5; i++) {
+                personJoinsLine(theLine);
+            }
+        }
+        // Else: (every other iteration)
+        else {
+            cout << "Time step #" << i << ": " << endl;
+            int prob = rand() % 100 + 1;  // returns random number 1-100
+            if (prob <= 40) personIsServed(theLine);
+            if (prob <= 60) personJoinsLine(theLine);
+            if (prob <= 20) lastPersonLeaves(theLine);
+            if (prob <= 10) anyoneLeaves(theLine);
+            // if (prob >= 90) vipSkipsLine(theLine);
+            cout << "Current line: " << endl;
+            theLine.print();
+        }
+ 
     }
 
     
@@ -389,7 +398,7 @@ void anyoneLeaves(DoublyLinkedList& list) {
     }
     cout << "Length of list is " << length << endl;
     // choose random position in the current list
-    int pos = rand() % length;
+    int pos = rand() % length + 1;
     cout << "Position to be removed is" << pos << endl;
     // print out that person
     list.print_node(pos);
@@ -400,7 +409,12 @@ void anyoneLeaves(DoublyLinkedList& list) {
 }
 // 4. Last customer leaves
 void lastPersonLeaves(DoublyLinkedList& list) { 
-
+    // Algorithm:
+    // print out name of last person
+    list.print_tail();
+    cout << " (at the rear) left the line." << endl;
+    // and remove the person
+    list.pop_back();
 }
 // 5. VIP skips line
 void vipSkipsLine(DoublyLinkedList& list) { 
