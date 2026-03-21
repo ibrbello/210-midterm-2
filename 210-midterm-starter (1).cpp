@@ -29,11 +29,11 @@ const string names[SIZE_NAMES] = {
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        string name;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
+        Node(string val, Node* p = nullptr, Node* n = nullptr) {
+            name = val; 
             prev = p;
             next = n;
         }
@@ -45,7 +45,7 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(int value, int position) {
+    void insert_after(string value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
@@ -76,12 +76,12 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(int value) {
+    void delete_val(string value) {
         if (!head) return;
 
         Node* temp = head;
         
-        while (temp && temp->data != value)
+        while (temp && temp->name != value)
             temp = temp->next;
 
         if (!temp) return; 
@@ -136,7 +136,7 @@ public:
         delete temp;
     }
 
-    void push_back(int v) {
+    void push_back(string v) {
         Node* newNode = new Node(v);
         if (!tail)
             head = tail = newNode;
@@ -147,7 +147,7 @@ public:
         }
     }
     
-    void push_front(int v) {
+    void push_front(string v) {
         Node* newNode = new Node(v);
         if (!head)
             head = tail = newNode;
@@ -191,6 +191,12 @@ public:
             head = tail = nullptr;
         delete temp;
     }
+    // Adding functions for easy access of 
+    string firstNode() {
+        return head->name;
+    }
+
+    string
 
     ~DoublyLinkedList() {
         while (head) {
@@ -206,7 +212,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->name << " ";
             current = current->next;
         }
         cout << endl;
@@ -219,7 +225,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->name << " ";
             current = current->prev;
         }
         cout << endl;
@@ -257,8 +263,10 @@ int main() {
             // print out "Time step #i"
             //cout << "Time step #" << i << ": " << endl;
             // Run 5 functions, one for each possible outcome
+            // compute probability
+            // Set of if-elifs based on probability
             // Each function recieves the DLL as its argument?
-            // Each function runs the probability,  does the action if needed,
+            // Each function does the action
             // and puts out the necessary output
             // Once all 5 functions run, output out the line
     }
@@ -273,13 +281,19 @@ void personJoinsLine(DoublyLinkedList list) {
     // Algorithm:
     // Get random name from list
     string name = names[rand() % (SIZE_NAMES)];
-    // create new node with that name
-    Node* newPerson;
     // use list.push_back to add that name
+    list.push_back(name);
     // output "name" joined the line
+    cout << name << " joined the line." << endl;
 }
 // 2 Customer is served
 void personIsServed(DoublyLinkedList list) {
+    // Algorithm:
+    // access first node to find name of 1st person
+
+    // pop first name from list
+    // output
+    list.pop_front();
 
 }
 // 3. Any customer leaves
