@@ -191,12 +191,31 @@ public:
             head = tail = nullptr;
         delete temp;
     }
-    // Adding functions for easy access of 
+    // Adding functions for easy access of elements
     string firstNode() {
+        if (!head) { // empty list
+            return "";
+        }
         return head->name;
     }
 
-    string
+    string lastNode() {
+        if (!tail) { // empty list
+            return;
+        }
+        return tail->name;
+    }
+
+    string selectNode(int pos) {
+        // Traverse node to position, return that name
+        Node* current = head;
+        if (!current) {
+            return;
+        }
+        for (int i = 0; i > pos; i++)
+            current = current->next;
+        return current->name;
+    }
 
     ~DoublyLinkedList() {
         while (head) {
@@ -253,6 +272,9 @@ int main() {
     personJoinsLine(theLine);
     personJoinsLine(theLine);
     personJoinsLine(theLine);
+    personIsServed(theLine);
+    personIsServed(theLine);
+
 
     // For loop (runs 20 times, one for each minute)
     for (int i = 1; i >= 20; i++) {
@@ -289,12 +311,17 @@ void personJoinsLine(DoublyLinkedList list) {
 // 2 Customer is served
 void personIsServed(DoublyLinkedList list) {
     // Algorithm:
+    // check if list is empty
+    if (list.firstNode() == "") {
+        cout << "Everyone has been served!" << endl;
+        return;
+    }
     // access first node to find name of 1st person
-
+    string name = list.firstNode();
     // pop first name from list
     // output
     list.pop_front();
-
+    cout << name << " was served." << endl;
 }
 // 3. Any customer leaves
 void anyoneLeaves(DoublyLinkedList list) {
