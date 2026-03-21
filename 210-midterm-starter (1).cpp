@@ -191,23 +191,29 @@ public:
             head = tail = nullptr;
         delete temp;
     }
+    bool isEmpty() {
+        return head == nullptr;
+    }
+
     // Adding functions for easy access of elements
-    string firstNode() {
-        // Can't figure out bounds checking, going to skip that for now
-        return head->name;
-    }
+    // These functions aren't working, but I only need to print out the value, so I'll
+    // print functions instead
+    // string firstNode() {
+    //     // Can't figure out bounds checking, going to skip that for now
+    //     return head->name;
+    // }
 
-    string lastNode() {
-        return tail->name;
-    }
+    // string lastNode() {
+    //     return tail->name;
+    // }
 
-    string selectNode(int pos) {
-        // Traverse node to position, return that name
-        Node* current = head;
-        for (int i = 0; i > pos; i++)
-            current = current->next;
-        return current->name;
-    }
+    // string selectNode(int pos) {
+    //     // Traverse node to position, return that name
+    //     Node* current = head;
+    //     for (int i = 0; i > pos; i++)
+    //         current = current->next;
+    //     return current->name;
+    // }
 
     ~DoublyLinkedList() {
         while (head) {
@@ -215,6 +221,54 @@ public:
             head = head->next;
             delete temp;
         }
+    }
+    void print_head() {
+        if (!head) {
+            cout << "List is empty" << endl;
+        }
+        cout << head->name;
+    }
+
+    void print_tail() {
+        if (!tail) {
+            cout << "List is empty" << endl;
+            return;
+        }
+        cout << tail->name;
+    }
+
+    void print_node(int pos) {
+        if (!head) {
+            cout << "List is empty." << endl;
+            return;
+        }
+    
+        if (pos == 1) {
+            print_head();
+            return;
+        }
+    
+        Node* temp = head;
+    
+        for (int i = 1; i < pos; i++){
+            if (!temp) {
+                cout << "Position doesn't exist." << endl;
+                return;
+            }
+            else
+                temp = temp->next;
+        }
+        if (!temp) {
+            cout << "Position doesn't exist." << endl;
+            return;
+        }
+    
+        if (!temp->next) {
+            print_tail();
+            return;
+        }
+
+        cout << temp->name;
     }
     void print() {
         Node* current = head;
@@ -245,15 +299,15 @@ public:
 
 // Function Prototypes for each coffee line operation:
 // 1. Adding a person
-void personJoinsLine(DoublyLinkedList list);
+void personJoinsLine(DoublyLinkedList& list);
 // 2 Customer is served
-void personIsServed(DoublyLinkedList list);
+void personIsServed(DoublyLinkedList& list);
 // 3. Any customer leaves
-void anyoneLeaves(DoublyLinkedList list);
+void anyoneLeaves(DoublyLinkedList& list);
 // 4. Last customer leaves
-void lastPersonLeaves(DoublyLinkedList list);
+void lastPersonLeaves(DoublyLinkedList& list);
 // 5. VIP skips line
-void vipSkipsLine(DoublyLinkedList list);
+void vipSkipsLine(DoublyLinkedList& list);
 
 int main() {
     srand(time(0));
@@ -264,6 +318,7 @@ int main() {
     personJoinsLine(theLine);
     personJoinsLine(theLine);
     personJoinsLine(theLine);
+    theLine.print();
     personIsServed(theLine);
     personIsServed(theLine);
 
@@ -291,7 +346,7 @@ int main() {
 
 // Functions for each coffee line operation:
 // 1. Adding a person
-void personJoinsLine(DoublyLinkedList list) {
+void personJoinsLine(DoublyLinkedList& list) {
     // Algorithm:
     // Get random name from list
     string name = names[rand() % (SIZE_NAMES)];
@@ -301,21 +356,21 @@ void personJoinsLine(DoublyLinkedList list) {
     cout << name << " joined the line." << endl;
 }
 // 2 Customer is served
-void personIsServed(DoublyLinkedList list) {
+void personIsServed(DoublyLinkedList& list) {
     // Can't figure out bounds checking, going to skip implementing that
-    string name = list.firstNode();
+    list.print_head();
+    cout << " was served." << endl;
     list.pop_front();
-    cout << name << " was served." << endl;
 }
 // 3. Any customer leaves
-void anyoneLeaves(DoublyLinkedList list) {
+void anyoneLeaves(DoublyLinkedList& list) {
 
 }
 // 4. Last customer leaves
-void lastPersonLeaves(DoublyLinkedList list) { 
+void lastPersonLeaves(DoublyLinkedList& list) { 
 
 }
 // 5. VIP skips line
-void vipSkipsLine(DoublyLinkedList list) { 
+void vipSkipsLine(DoublyLinkedList& list) { 
 
 }
