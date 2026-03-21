@@ -191,11 +191,26 @@ public:
             head = tail = nullptr;
         delete temp;
     }
-    bool isEmpty() {
-        return head == nullptr;
+    // Function to find length of list
+    int findLength() {
+        
+        Node* current = head;
+        if (!current) {
+            cout << "List is empty." << endl;
+            return -1;
+        }
+        int length = 0;
+        while (current) {
+            current = current->next;
+            length += 1;
+        }
+        return length;
     }
 
-    // Adding functions for easy access of elements
+    // bool isEmpty() {
+    //     return head == nullptr;
+    // }
+
     // These functions aren't working, but I only need to print out the value, so I'll
     // print functions instead
     // string firstNode() {
@@ -222,6 +237,7 @@ public:
             delete temp;
         }
     }
+    // Functions for printing specific nodes
     void print_head() {
         if (!head) {
             cout << "List is empty" << endl;
@@ -270,6 +286,7 @@ public:
 
         cout << temp->name;
     }
+
     void print() {
         Node* current = head;
         if (!current) {
@@ -319,8 +336,7 @@ int main() {
     personJoinsLine(theLine);
     personJoinsLine(theLine);
     theLine.print();
-    personIsServed(theLine);
-    personIsServed(theLine);
+    anyoneLeaves(theLine);
 
 
     // For loop (runs 20 times, one for each minute)
@@ -364,6 +380,22 @@ void personIsServed(DoublyLinkedList& list) {
 }
 // 3. Any customer leaves
 void anyoneLeaves(DoublyLinkedList& list) {
+    // Algorithm:
+    // find out length of current list
+    int length = list.findLength();
+    if (length == -1) {
+        cout << "Everyone is served!" << endl;
+        return;
+    }
+    cout << "Length of list is " << length << endl;
+    // choose random position in the current list
+    int pos = rand() % length;
+    cout << "Position to be removed is" << pos << endl;
+    // print out that person
+    list.print_node(pos);
+    cout << " left the line." << endl;
+    // and delete that node
+    list.delete_pos(pos);
 
 }
 // 4. Last customer leaves
